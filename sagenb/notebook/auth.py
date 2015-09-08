@@ -94,6 +94,10 @@ class LdapAuth(AuthMethod):
         query = filter_format(
             '(%s=%s)', (self._conf['ldap_username_attrib'], username))
 
+        custom_filter = self._conf['ldap_custom_filter']
+        if custom_filter:
+            query = '(&%s(%s))' % (query, custom_filter)
+
         result = self._ldap_search(query, attrlist)
 
         # only allow one unique result

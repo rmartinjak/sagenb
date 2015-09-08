@@ -54,6 +54,7 @@ defaults = {'word_wrap_cols':72,
             'ldap_bindpw': 'secret',
             'ldap_gssapi': False,
             'ldap_username_attrib': 'cn',
+            'ldap_custom_filter': '',
             'ldap_timeout': 5,
             }
 
@@ -256,8 +257,15 @@ defaults_descriptions = {
         TYPE : T_STRING,
         },
 
-    'ldap_timeout': {
+    'ldap_custom_filter': {
         POS : 8,
+        DESC : _('Custom LDAP filter to restrict the set of allowed users'),
+        GROUP : G_LDAP,
+        TYPE : T_STRING,
+        },
+
+    'ldap_timeout': {
+        POS : 9,
         DESC: _('Query timeout (seconds)'),
         GROUP : G_LDAP,
         TYPE : T_INTEGER,
